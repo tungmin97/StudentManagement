@@ -1,9 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
-import {
-  SubjectScreemNavigationProps,
-  SubjectState,
-} from '../../../types/types';
+import { SubjectScreemNavigationProps, SubjectState } from '../../types/types';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SubjectCard({ item }: { item: SubjectState }) {

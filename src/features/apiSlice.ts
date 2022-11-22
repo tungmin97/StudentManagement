@@ -78,4 +78,5 @@ export const {
   useUpdateStudentSubjectsMutation,
   useAddStudentMutation,
   useUpdateSubjectMutation,
+  useAddSubjectMutation,
 } = getData;

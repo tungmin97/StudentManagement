@@ -12,13 +12,13 @@ export const subjectSlice = createSlice({
   name: 'subject',
   initialState,
   reducers: {
-    resetField: () => ({
+    resetFieldSubject: () => ({
       ...initialState,
     }),
     changeTeacher: (state, { payload }) => {
       state.teacher = payload;
     },
-    changeName: (state, { payload }) => {
+    changeSubject: (state, { payload }) => {
       state.name = payload;
     },
     changeClassroom: (state, { payload }) => {
@@ -35,12 +35,6 @@ export const subjectSlice = createSlice({
         student => student.id !== payload.id,
       );
     },
-    // populateStudents: (state, { payload }) => {
-    //   state.allSubjects = payload.map((item: StudentSubjects) => ({
-    //     id: item.id,
-    //     name: item.name,
-    //   }));
-    // },
     populateSubjectsStudent: (state, { payload }) => {
       state.students = payload;
     },
@@ -48,9 +42,9 @@ export const subjectSlice = createSlice({
 });
 
 export const {
-  resetField,
+  resetFieldSubject,
   changeClassroom,
-  changeName,
+  changeSubject,
   changeTeacher,
   addStudent,
   removeStudent,

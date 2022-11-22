@@ -135,6 +135,11 @@ export type StudentAddProps = NativeStackScreenProps<
   'StudentAdd'
 >;
 
+export type SubjectAddProps = NativeStackScreenProps<
+  SubjectStackParamList,
+  'SubjectAdd'
+>;
+
 export type StudentScreenNavigationProps = StudentScreenProps['navigation'];
 
 export type SubjectScreemNavigationProps = SubjectScreenProps['navigation'];

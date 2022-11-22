@@ -6,14 +6,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React, { useEffect } from 'react';
-import { StudentDetailsProps, SubjectDetailsProps } from '../types/types';
-import FastImage from 'react-native-fast-image';
-import {
-  formatAge,
-  validateAge,
-  validateEmail,
-  validateField,
-} from '../utils/helper';
+import { SubjectDetailsProps } from '../types/types';
+import { validateField } from '../utils/helper';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import {
@@ -21,26 +15,21 @@ import {
   useUpdateSubjectMutation,
 } from '../features/apiSlice';
 import { useAppDispatch, useAppSelector } from '../app/store';
-import {
-  changeAge,
-  changeEmail,
-  changeName,
-  resetField,
-} from '../features/studentSlice';
 import StudentForm from '../components/Students/StudentForm';
 import {
   changeClassroom,
+  changeSubject,
   changeTeacher,
   populateSubjectsStudent,
+  resetFieldSubject,
 } from '../features/subjectSlice';
 
-export default function StudentDetail({
+export default function SubjectDetail({
   navigation,
   route,
 }: SubjectDetailsProps) {
   const { id } = route.params.data;
   const { data, isFetching } = useGetSubjectQuery(id);
-  // const { data: subjects } = useGetListSubjectsQuery();
   const [updateSubject] = useUpdateSubjectMutation();
   const dispatch = useAppDispatch();
 
@@ -53,9 +42,9 @@ export default function StudentDetail({
   console.log(name, classroom, teacher, students);
 
   useEffect(() => {
-    dispatch(resetField());
+    dispatch(resetFieldSubject());
     dispatch(changeClassroom(data ? data.classroom : ''));
-    dispatch(changeName(data ? data.name : ''));
+    dispatch(changeSubject(data ? data.name : ''));
     dispatch(changeTeacher(data ? data.teacher : ''));
     dispatch(populateSubjectsStudent(data ? data.students : []));
   }, [dispatch, data]);
@@ -106,25 +95,25 @@ export default function StudentDetail({
         </View>
         <View className=" bg-slate-300 rounded-2xl p-5">
           <StudentForm
-            label="Full Name"
+            label="Subject Name"
             placeholder="Please enter the full name"
             value={name}
-            handleChange={(input: string) => dispatch(changeName(input))}
+            handleChange={(input: string) => dispatch(changeSubject(input))}
             handleSubmit={input => validateField(input)}
           />
           <StudentForm
-            label="Age"
+            label="Teacher"
             placeholder="Who's the teacher?"
             value={teacher}
-            handleChange={(input: string) => dispatch(changeAge(input))}
-            handleSubmit={input => validateAge(input)}
+            handleChange={(input: string) => dispatch(changeTeacher(input))}
+            handleSubmit={input => validateField(input)}
           />
           <StudentForm
-            label="Email"
+            label="Classroom"
             placeholder="Please specify the classroom code"
             value={classroom}
-            handleChange={(input: string) => dispatch(changeEmail(input))}
-            handleSubmit={(input: string) => validateEmail(input)}
+            handleChange={(input: string) => dispatch(changeClassroom(input))}
+            handleSubmit={(input: string) => validateField(input)}
           />
         </View>
         <View className="flex-row items-center">

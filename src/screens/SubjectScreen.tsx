@@ -5,7 +5,7 @@ import { SubjectScreenProps, SubjectState } from '../types/types';
 import FooterLoading from '../components/Loading/FooterLoading';
 import HubLoading from '../components/Loading/HubLoading';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
-import SubjectCard from '../components/Students/Subjects/SubjectCard';
+import SubjectCard from '../components/Subjects/SubjectCard';
 
 export default function SubjectScreen({ navigation }: SubjectScreenProps) {
   const [curPage, setCurPage] = useState(1);
